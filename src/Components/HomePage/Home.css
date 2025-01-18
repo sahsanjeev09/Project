@@ -1,0 +1,123 @@
+/* Reset default margin and padding for body and html */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Apply box-sizing to all elements */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.homepage {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #333;
+  background-color: #f8f9fa;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  padding: 60px 20px;
+  margin: 0;
+  width: 100%;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+}
+
+.primary {
+  background: #ff9800;
+  color: white;
+}
+
+.primary:hover {
+  background: #e68900;
+}
+
+.secondary {
+  background: white;
+  color: #0d47a1;
+  border: 2px solid #0d47a1;
+}
+
+.secondary:hover {
+  background: #0d47a1;
+  color: white;
+}
+
+/* Features Section */
+.features {
+  padding: 60px 20px;
+  background: white;
+  width: 100%;
+}
+
+.features h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-card {
+  background: #007bff;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Call to Action */
+.cta {
+  background: #0d47a1;
+  color: white;
+  padding: 50px 20px;
+  width: 100%;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}

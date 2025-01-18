@@ -1,0 +1,95 @@
+.about-page {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Quote image section */
+  .quote-section {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin-top: 30px;
+  }
+  
+  .quote-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6); /* dark overlay */
+  }
+  
+  .quote-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .quote-text h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    text-align: right;
+  }
+  
+  .quote-text p {
+    font-size: 1.2rem;
+    color: white;
+  }
+  
+  /* About content */
+  .about-content {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .about-content h1 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #333;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Cards */
+  .about-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .about-box {
+    max-width: 300px;
+    text-align: left;
+  }
+  
+  .about-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-box p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-boxes {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .quote-text h2 {
+      font-size: 1.5rem;
+    }
+  
+    .quote-text p {
+      font-size: 1rem;
+    }
+  }
+  
