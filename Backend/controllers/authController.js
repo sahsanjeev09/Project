@@ -38,6 +38,80 @@ exports.signup = async (req, res) => {
   }
 };
 
+// Verify OTP Route
+exports.verifyOTP = async (req, res) => {
+  const { userId, otp } = req.body;
+  try {
+    const otpVerification = await OTPVerification.findOne({ userId });
+    if (!otpVerification) return res.status(400).json({ message: "Invalid OTP" });
+
+    if (otpVerification.otpCode !== otp) return res.status(400).json({ message: "Invalid OTP" });
+    if (otpVerification.expiresAt < Date.now()) return res.status(400).json({ message: "OTP expired" });
+
+    // Update user status to pending
+    const user = await User.findById(userId);
+    user.status = "pending";
+    await user.save();
+
+    await OTPVerification.findByIdAndDelete(otpVerification._id);
+
+    res.status(200).json({ message: "OTP verified successfully" });
+  } catch (err) {
+    console.error("OTP verification error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Forgot Password Route
+exports.forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpVerification = new OTPVerification({
+      userId: user._id,
+      email: user.email,
+      otpCode: otp,
+      createdAt: Date.now(),
+      expiresAt: Date.now() + 5 * 60 * 1000, // 5 minutes
+    });
+
+    await otpVerification.save();
+    await sendOTPEmail(user.email, otp);
+
+    res.status(200).json({ message: "OTP sent for password reset" });
+  } catch (err) {
+    console.error("Forgot password error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Reset Password Route
+exports.resetPassword = async (req, res) => {
+  const { userId, otp, newPassword } = req.body;
+  try {
+    const otpVerification = await OTPVerification.findOne({ userId });
+    if (!otpVerification) return res.status(400).json({ message: "Invalid OTP" });
+
+    if (otpVerification.otpCode !== otp) return res.status(400).json({ message: "Invalid OTP" });
+    if (otpVerification.expiresAt < Date.now()) return res.status(400).json({ message: "OTP expired" });
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const user = await User.findById(userId);
+    user.password = hashedPassword;
+    await user.save();
+
+    await OTPVerification.findByIdAndDelete(otpVerification._id);
+
+    res.status(200).json({ message: "Password reset successfully" });
+  } catch (err) {
+    console.error("Reset password error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 // Login Route
 exports.login = async (req, res) => {
   const { email, password } = req.body;
