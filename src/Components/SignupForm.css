@@ -1,0 +1,59 @@
+/* SignupForm.css */
+.container {
+    max-width: 28rem; /* Equivalent to max-w-md */
+    margin: 0 auto; /* Equivalent to mx-auto */
+    padding: 2rem; /* Equivalent to p-8 */
+    background-color: white; /* Equivalent to bg-white */
+    border-radius: 0.5rem; /* Equivalent to rounded */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Equivalent to shadow */
+  }
+  
+  .title {
+    font-size: 1.5rem; /* Equivalent to text-2xl */
+    font-weight: bold; /* Equivalent to font-bold */
+    margin-bottom: 1rem; /* Equivalent to mb-4 */
+  }
+  
+  .label {
+    display: block; /* Equivalent to block */
+    margin-bottom: 0.5rem; /* Equivalent to mb-2 */
+  }
+  
+  .input {
+    width: 100%; /* Equivalent to w-full */
+    padding: 0.5rem; /* Equivalent to p-2 */
+    margin-bottom: 1rem; /* Equivalent to mb-4 */
+    border: 1px solid #ccc; /* Equivalent to border */
+    border-radius: 0.25rem; /* Equivalent to rounded */
+  }
+  
+  .button {
+    width: 100%; /* Equivalent to w-full */
+    background-color: #38a169; /* Equivalent to bg-green-500 */
+    color: white; /* Equivalent to text-white */
+    padding: 0.5rem 0; /* Equivalent to py-2 */
+    border-radius: 0.25rem; /* Equivalent to rounded */
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Hover transition */
+  }
+  
+  .button:hover {
+    background-color: #2f855a; /* Equivalent to hover:bg-green-600 */
+  }
+  
+  .footer-text {
+    text-align: center; /* Equivalent to text-center */
+    margin-top: 1rem; /* Equivalent to mt-4 */
+  }
+  
+  .footer-link {
+    color: #3182ce; /* Equivalent to text-blue-500 */
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .footer-link:hover {
+    text-decoration: underline; /* Equivalent to hover:underline */
+  }
+  

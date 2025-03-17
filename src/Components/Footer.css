@@ -1,0 +1,8 @@
+/* Footer.css */
+.footer {
+    background-color: #2d3748; /* Equivalent to bg-gray-800 */
+    color: white; /* Equivalent to text-white */
+    text-align: center; /* Equivalent to text-center */
+    padding: 1rem; /* Equivalent to p-4 */
+  }
+  
