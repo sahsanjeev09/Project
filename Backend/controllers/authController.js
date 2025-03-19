@@ -144,3 +144,125 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// Logout Route
+exports.logout = async (req, res) => {
+  try {
+    res.clearCookie("token", { path: '/', secure: process.env.NODE_ENV === 'production' });
+    res.json({ message: "Logged out successfully" });
+  } catch (err) {
+    console.error("Logout error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.approveUser = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    user.status = status;
+    await user.save();
+
+    const subject = status === "active" ? "Account Verified" : status === "blocked" ? "Account Blocked" : "Account Not Verified";
+    const text =
+      status === "active"
+        ? `Dear ${user.name}, your account has been successfully created. Please go through the login process to access your dashboard. Thank you!`
+        : status === "blocked"
+        ? `Dear ${user.name}, your account has been blocked. Please visit the library department for inquiry. Thank you!`
+        : `Dear ${user.name}, your account creation has been rejected due to wrong credentials. Please signup again or visit the library department for inquiry. Thank you!`;
+
+    await sendStatusUpdateEmail(user.email, subject, text);
+
+    res.status(200).json({ message: "Status updated successfully" });
+  } catch (err) {
+    console.error("Error updating status:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+// Get all students with role 'student'
+exports.getAllStudents = async (req, res) => {
+  try {
+    const students = await User.find({ role: 'student' });
+    res.json(students);
+  } catch (err) {
+    console.error("Error fetching students:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Update student status
+exports.updateStudentStatus = async (req, res) => {
+  const { studentID, status } = req.body;
+
+  try {
+    const student = await User.findById(studentID);
+    if (!student) return res.status(404).json({ message: "Student not found" });
+
+    student.status = status;
+    await student.save();
+
+    res.json({ message: "Status updated successfully" });
+  } catch (err) {
+    console.error("Error updating status:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+exports.createReservation = async (req, res) => {
+  const { studentId, studentName, bookId, bookName, reservationDate, status } = req.body;
+
+  try {
+    const student = await User.findById(studentId);
+    const book = await Book.findById(bookId);
+
+    if (!student || !book) {
+      return res.status(404).json({ message: "Student or Book not found" });
+    }
+
+    const recentReservations = await Reservation.find({
+      studentId: studentId,
+      reservationDate: { $gte: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000) },
+      status: "reserved",
+    });
+
+    if (recentReservations.length >= 2) {
+      return res.status(400).json({ message: "You have already reserved 2 books in the last 15 days" });
+    }
+
+    const reservation = new Reservation({
+      studentName,
+      studentId,
+      bookName,
+      bookId,
+      reservationDate: reservationDate || new Date(),
+      status: status || "pending",
+    });
+
+    await reservation.save();
+
+    const mailOptions = {
+      from: process.env.SENDER_EMAIL,
+      to: student.email,
+      subject: "Book Reservation Confirmation",
+      text: `Dear ${student.name}, your reservation for the book "${book.Book_Name}" is pending.`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500).json({ message: "Failed to send email" });
+      }
+      console.log("Email sent:", info.response);
+      res.status(201).json({ message: "Reservation created successfully", reservation });
+    });
+  } catch (err) {
+    console.error("Error creating reservation:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
