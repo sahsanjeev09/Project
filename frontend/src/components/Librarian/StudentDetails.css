@@ -1,0 +1,34 @@
+.student-details {
+  padding: 20px;
+}
+
+.student-details h1 {
+  margin-bottom: 20px;
+}
+
+.student-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-details th,
+.student-details td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.student-details th {
+  background-color: #f2f2f2;
+}
+
+.student-details button {
+  margin: 2px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.status-message {
+  color: green;
+  margin-top: 10px;
+}
