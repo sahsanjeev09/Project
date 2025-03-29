@@ -1,0 +1,30 @@
+.filter-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent; /* Ensure background is transparent */
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: none; /* Remove box shadow */
+}
+
+.filter-dropdown select {
+  padding: 6px 30px 6px 12px; /* Adjust padding to make room for the icon */
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #111827;
+  font-size: 14px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Adjust the position of the icon */
+  background-size: 16px;
+  cursor: pointer;
+}
+
+.filter-dropdown select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
