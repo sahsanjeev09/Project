@@ -1,0 +1,145 @@
+:root {
+  --primary-color: #2563eb;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+  --pending-color: #facc15;
+  --bg-color: #f9fafb;
+  --text-color: #1f2937;
+  --border-color: #e5e7eb;
+}
+
+.reservation-details-container {
+  padding: 32px;
+  background-color: var(--bg-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+/* Controls Layout */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-section h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Table container */
+.table-container {
+  background-color: white;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Table */
+.reservations-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.reservations-table th,
+.reservations-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 15px;
+}
+
+.reservations-table th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+}
+
+.reservations-table tr:hover {
+  background-color: #f9fbfd;
+  transition: background-color 0.3s ease;
+}
+
+/* Status styling */
+.status-approved {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.status-rejected {
+  color: var(--danger-color);
+  font-weight: 500;
+}
+
+.status-pending {
+  color: var(--pending-color);
+  font-weight: 500;
+}
+
+/* Feedback sections */
+.loading,
+.error,
+.no-data {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .reservation-details-container {
+    padding: 20px;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reservations-table th,
+  .reservations-table td {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .reservation-details-container {
+    padding: 16px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .reservations-table {
+    font-size: 13px;
+    min-width: unset;
+  }
+
+  .status-select {
+    width: 100%;
+  }
+}
