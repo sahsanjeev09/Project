@@ -1,0 +1,136 @@
+.wishlist-details-container {
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.wishlist-details-container h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+/* Controls Layout */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-section h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Table Styling */
+.wishlist-table-container {
+  overflow-x: auto;
+}
+
+.wishlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.wishlist-table th {
+  background-color: #f3f4f6;
+  text-align: left;
+  padding: 1rem;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.wishlist-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #4b5563;
+}
+
+.wishlist-table tr:hover {
+  background-color: #f9fafb;
+}
+
+.available-row {
+  background-color: #ecfdf5;
+}
+
+.available-row:hover {
+  background-color: #d1fae5;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-badge.available {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.status-badge.unavailable {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.no-wishlists {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+  background-color: #f9fafb;
+}
+
+.wishlist-loading, .wishlist-error {
+  padding: 2rem;
+  text-align: center;
+}
+
+.wishlist-loading {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.wishlist-error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-section {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .wishlist-table th,
+  .wishlist-table td {
+    padding: 0.75rem;
+  }
+
+  .wishlist-table {
+    font-size: 0.9rem;
+  }
+}
