@@ -1,0 +1,55 @@
+/* Header.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem; /* Equivalent to p-4 */
+    background-color: #2d3748; /* Equivalent to bg-gray-800 */
+    color: white; /* Equivalent to text-white */
+  }
+  
+  .header-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem; /* Equivalent to text-2xl */
+    font-weight: bold; /* Equivalent to font-bold */
+  }
+  
+  .header-search {
+    flex-grow: 1; /* Equivalent to flex-grow */
+    margin: 0 1rem; /* Equivalent to mx-4 */
+  }
+  
+  .header-search input {
+    width: 100%; /* Equivalent to w-full */
+    padding: 0.5rem; /* Equivalent to p-2 */
+    border-radius: 0.25rem; /* Equivalent to rounded */
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Equivalent to space-x-4 */
+  }
+  
+  .header-actions button {
+    background-color: #4299e1; /* Equivalent to bg-blue-500 */
+    padding: 0.5rem 1rem; /* Equivalent to px-4 py-2 */
+    border-radius: 0.25rem; /* Equivalent to rounded */
+    color: white;
+    transition: background-color 0.2s;
+  }
+  
+  .header-actions button:hover {
+    background-color: #3182ce; /* Equivalent to hover:bg-blue-600 */
+  }
+  
+  .header-notifications {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-notifications span:first-child {
+    margin-right: 0.5rem; /* Equivalent to mr-2 */
+  }
+  
